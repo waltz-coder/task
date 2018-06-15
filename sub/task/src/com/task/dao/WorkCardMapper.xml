@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.task.dao.WorkCardDao">
+<cache type="com.task.cache.RedisCache"/>
+	<select id="selectWorkCardById" parameterType="java.lang.Long"
+		resultType="WorkCard">
+		select * from t_work_card where id=#{id}
+	</select>
+	<select id="selectWorkCardByEmpId" parameterType="java.lang.Long"
+		resultType="WorkCard">
+		select * from t_work_card where emp_id=#{empid}
+	</select>
+	<select id="selectWorkCardAll" resultType="WorkCard">
+		select * from t_work_card
+	</select>
+	<select id="selectWorkCardByColumnLike" parameterType="WorkCard"
+		resultType="WorkCard">
+		select * from t_work_card
+		<trim prefix="where" prefixOverrides="and">
+			<if test="workCard.id!=null and workCard.id!=''">
+				and id like concat('%',#{workCard.id},'%')
+			</if>
+			<if test="workCard.empId!=null and workCard.empId!=''">
+				and emp_id like concat('%',#{workCard.empId},'%')
+			</if>
+			<if test="workCard.realName!=null and workCard.realName!=''">
+				and real_name like concat('%',#{workCard.realName},'%')
+			</if>
+			<if test="workCard.department!=null and workCard.department!=''">
+				and department like concat('%',#{workCard.department},'%')
+			</if>
+			<if test="workCard.mobile!=null and workCard.mobile!=''">
+				and mobile like concat('%',#{workCard.mobile},'%')
+			</if>
+			<if test="workCard.position!=null and workCard.position">
+				and position like concat('%',#{workCard.position},'%')
+			</if>
+			<if test="workCard.note!=null and workCard.note!=''">
+				and note like concat('%',#{workCard},'%')
+			</if>
+			<if test="workCard.deleteFlag!=null and workCard.deleteFlag!=''">
+				and delete_flag like concat('%',#{workCard.deleteFlag},'%')
+			</if>
+		</trim>
+	</select>
+	<insert id="insertWorkCard" parameterType="WorkCard" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into t_work_card
+		<choose>
+			<when
+				test="(workCard.note!=null and workCard.note!='') and (workCard.deleteFlag!=null and workCard.deleteFlag!='')">
+				(emp_id,real_name,department,mobile,position,note,delete_flag)
+				values(#{workCard.empId},#{workCard.realName},#{workCard.department},#{workCard.mobile},#{workCard.position},#{workCard.note},#{workCard.deleteFlag})
+			</when>
+			<when
+				test="(workCard.note==null or workCard.note=='') and (workCard.deleteFlag!=null and workCard.deleteFlag!='')">
+				(emp_id,real_name,department,mobile,position,delete_flag)
+				values(#{workCard.empId},#{workCard.realName},#{workCard.department},#{workCard.mobile},#{workCard.position},#{workCard.deleteFlag})
+			</when>
+			<when
+				test="(workCard.deleteFlag==null or workCard.deleteFlag=='') and ( workCard.note!=null and workCard.note!='') ">
+				(emp_id,real_name,department,mobile,position,note)
+				values(#{workCard.empId},#{workCard.realName},#{workCard.department},#{workCard.mobile},#{workCard.position},#{workCard.note})
+			</when>
+			<otherwise>
+				(emp_id,real_name,department,mobile,position)
+				values(#{workCard.empId},#{workCard.realName},#{workCard.department},#{workCard.mobile},#{workCard.position})
+			</otherwise>
+		</choose>
+	</insert>
+	<delete id="deleteWorkCardById" parameterType="java.lang.Long">
+		delete from t_work_card where
+		id=#{id}
+	</delete>
+	<delete id="deleteWorkCard" parameterType="WorkCard">
+		delete from t_work_card
+		<trim prefix="where" prefixOverrides="and">
+			<if test="workCard.id!=null and workCard.id!=''">
+				and id like concat('%',#{workCard.id},'%')
+			</if>
+			<if test="workCard.empId!=null and workCard.empId!=''">
+				and emp_id like concat('%',#{workCard.empId},'%')
+			</if>
+			<if test="workCard.realName!=null and workCard.realName!=''">
+				and real_name like concat('%',#{workCard.realName},'%')
+			</if>
+			<if test="workCard.department!=null and workCard.department!=''">
+				and department like concat('%',#{workCard.department},'%')
+			</if>
+			<if test="workCard.mobile!=null and workCard.mobile!=''">
+				and mobile like concat('%',#{workCard.mobile},'%')
+			</if>
+			<if test="workCard.position!=null and workCard.position">
+				and position like concat('%',#{workCard.position},'%')
+			</if>
+			<if test="workCard.note!=null and workCard.note!=''">
+				and note like concat('%',#{workCard},'%')
+			</if>
+			<if test="workCard.deleteFlag!=null and workCard.deleteFlag!=''">
+				and delete_flag like concat('%',#{workCard.deleteFlag},'%')
+			</if>
+		</trim>
+	</delete>
+	<update id="updateWorkCard" parameterType="WorkCard">
+		update t_work_card
+		<trim prefix="set" suffixOverrides=",">
+			<if test="workCard.id!=null and workCard.id!=''">
+				id = #{workCard.id},
+			</if>
+			<if test="workCard.empId!=null and workCard.empId!=''">
+				emp_id = #{workCard.empId},
+			</if>
+			<if test="workCard.realName!=null and workCard.realName!=''">
+				real_name =#{workCard.realName},
+			</if>
+			<if test="workCard.department!=null and workCard.department!=''">
+				department =#{workCard.department},
+			</if>
+			<if test="workCard.mobile!=null and workCard.mobile!=''">
+				mobile =#{workCard.mobile},
+			</if>
+			<if test="workCard.position!=null and workCard.position">
+				position =#{workCard.position},
+			</if>
+			<if test="workCard.note!=null and workCard.note!=''">
+				note =#{workCard},
+			</if>
+			<if test="workCard.deleteFlag!=null and workCard.deleteFlag!=''">
+				delete_flag =#{workCard.deleteFlag},
+			</if>
+		</trim>
+		where id=#{workCard.id}
+	</update>
+</mapper>

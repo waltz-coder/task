@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.task.dao.EmployeeTaskDao">
+<resultMap type="EmployeeTask" id="selectById">
+<id column="id" property="id"/>
+<result column="emp_id" property="empId"/>
+<result column="task_name" property="taskName"/>
+<result column="note" property="note"/>
+<result column="delete_flag" property="deleteFlag"/>
+<association property="task" column="task_id" select="com.task.dao.TaskDao.selectTaskById"></association>
+
+</resultMap>
+<select id="selectEmployeeTaskById" parameterType="java.lang.Long" resultMap="selectById">
+	select * from t_employee_task where id= #{id}
+</select>
+<select id="selectEmployeeTaskByEmpId" parameterType="java.lang.Long" resultMap="selectById">
+	select * from t_employee_task where emp_id= #{empid}
+</select>
+</mapper>

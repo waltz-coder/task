@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.task.dao.TaskDao">
+	<select id="selectTaskById" parameterType="java.lang.Long"
+		resultType="Task">
+		select * from t_task where id=#{id}
+	</select>
+	<select id="selectTaskAll" resultType="Task">
+		select * from t_task
+	</select>
+	<select id="selectTaskByColumnLike" parameterType="Task"
+		resultType="Task">
+		select * from t_task
+		<trim prefix="where" prefixOverrides="and">
+			<if test="task.id!=null and task.id!=''">
+				and id like concat('%',#{task.id},'%')
+			</if>
+			<if test="task.title!=null and task.title!=''">
+				and title like concat('%',#{task.title},'%')
+			</if>
+			<if test="task.context!=null and task.context!=''">
+				and context like concat('%',#{task.context},'%')
+			</if>
+			<if test="task.note!=null and task.note!=''">
+				and note like concat('%',#{task.note},'%')
+			</if>
+			<if test="task.deleteFlag!=null and task.deleteFlag!=''">
+				and deleteFlag like concat('%',#{task.deleteFlag},'%')
+			</if>
+		</trim>
+	</select>
+	<insert id="insertTask" parameterType="Task" useGeneratedKeys="true"  keyColumn="id" keyProperty="id">
+		insert into t_task
+		<choose>
+			<when
+				test="(task.note!=null and task.note!='') and (task.deleteFlag!=null and task.deleteFlag!='')">
+				(title,context,note,delete_flag)
+				values(#{task.title},#{task.context},#{task.note},#{task.deleteFlag})
+			</when>
+			<when
+				test="(task.note==null or task.note=='') and (task.deleteFlag!=null and task.deleteFlag!='')">
+				(title,context,delete_flag)
+				values(#{task.title},#{task.context},#{task.deleteFlag})
+			</when>
+			<when
+				test="(task.deleteFlag==null or task.deleteFlag=='') and ( task.note!=null and task.note!='') ">
+				(title,context,note)
+				values(#{task.title},#{task.context},#{task.note})
+			</when>
+			<otherwise>
+				(title,context)
+				values(#{task.title},#{task.context})
+			</otherwise>
+		</choose>
+	</insert>
+	<delete id="deleteTaskById" parameterType="java.lang.Long">
+		delete from t_task where
+		id=#{id}
+	</delete>
+	<delete id="deleteTask" parameterType="Task">
+		delete from t_task
+		<trim prefix="where" prefixOverrides="and">
+			<if test="task.id!=null and task.id!=''">
+				and id like concat('%',#{task.id},'%')
+			</if>
+			<if test="task.title!=null and task.title!=''">
+				and title like concat('%',#{task.title},'%')
+			</if>
+			<if test="task.context!=null and task.context!=''">
+				and context like concat('%',#{task.context},'%')
+			</if>
+			<if test="task.note!=null and task.note!=''">
+				and note like concat('%',#{task.note},'%')
+			</if>
+			<if test="task.deleteFlag!=null and task.deleteFlag!=''">
+				and deleteFlag like concat('%',#{task.deleteFlag},'%')
+			</if>
+		</trim>
+	</delete>
+	<update id="updateTask" parameterType="Task">
+		update t_task
+		<trim prefix="set" suffixOverrides=",">
+			<if test="task.title!=null and task.title!=''">
+				title = #{task.title},
+			</if>
+			<if test="task.context!=null and task.context!=''">
+				context = #{task.context},
+			</if>
+			<if test="task.note!=null and task.note!=''">
+				note = #{task.note},
+			</if>
+			<if test="task.deleteFlag!=null and task.deleteFlag!=''">
+				deleteFlag = #{task.deleteFlag},
+			</if>
+		</trim>
+		where id=#{task.id}
+	</update>
+</mapper>

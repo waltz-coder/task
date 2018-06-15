@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD config 3.0//EN"
+      "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<properties resource="com/task/utils/mybatis.properties" />
+	<!-- mybatis 配置 -->
+	<settings>
+		<setting name="cacheEnabled" value="true"/>
+		<setting name="useGeneratedKeys" value="true"/>
+		<setting name="lazyLoadingEnabled" value="false"/>
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.task.entity.Employee" alias="Employee" />
+		<typeAlias type="com.task.entity.EmployeeTask"
+			alias="EmployeeTask" />
+		<typeAlias type="com.task.entity.FemaleEmployee"
+			alias="FemaleEmployee" />
+		<typeAlias type="com.task.entity.MaleEmployee"
+			alias="MaleEmployee" />
+		<typeAlias type="com.task.entity.FemaleHealthForm"
+			alias="FemaleHealthForm" />
+		<typeAlias type="com.task.entity.MaleHealthForm"
+			alias="MaleHealthForm" />
+		<typeAlias type="com.task.entity.HealthForm"
+			alias="HealthForm" />
+		<typeAlias type="com.task.enumeration.SexEnum"
+			alias="SexEnum" />
+		<typeAlias type="com.task.entity.Task" alias="Task" />
+		<typeAlias type="com.task.entity.WorkCard" alias="WorkCard" />
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${mysql.driver}" />
+				<property name="url" value="${mysql.url}" />
+				<property name="username" value="${mysql.username}" />
+				<property name="password" value="${mysql.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="com/task/dao/TaskMapper.xml" />
+		<mapper resource="com/task/dao/WorkCardMapper.xml" />
+		<mapper resource="com/task/dao/EmployeeTaskMapper.xml" />
+		<mapper resource="com/task/dao/FemaleHealthFormMapper.xml" />
+		<mapper resource="com/task/dao/MaleHealthFormMapper.xml" />
+		<mapper resource="com/task/dao/EmployeeMapper.xml" />
+	</mappers>
+</configuration>
