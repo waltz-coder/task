@@ -29,5 +29,11 @@
 	<classpathentry kind="lib" path="D:/App/FrameWork/mybatis/mybatis-3.4.6/lib/slf4j-api-1.7.25.jar"/>
 	<classpathentry kind="lib" path="D:/App/FrameWork/mybatis/mybatis-3.4.6/lib/slf4j-log4j12-1.7.25.jar"/>
 	<classpathentry kind="lib" path="D:/App/FrameWork/redis4j/jedis-2.9.0.jar"/>
+	<classpathentry kind="lib" path="D:/App/FrameWork/json-lib/required/commons-beanutils.jar"/>
+	<classpathentry kind="lib" path="D:/App/FrameWork/json-lib/required/commons-collections-3.2.2.jar"/>
+	<classpathentry kind="lib" path="D:/App/FrameWork/json-lib/required/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="D:/App/FrameWork/json-lib/required/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="D:/App/FrameWork/json-lib/required/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="D:/App/FrameWork/json-lib/required/json-lib-2.4-jdk15.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

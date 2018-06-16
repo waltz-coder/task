@@ -27,6 +27,7 @@
 		<typeAlias type="com.task.enumeration.SexEnum"
 			alias="SexEnum" />
 		<typeAlias type="com.task.entity.Task" alias="Task" />
+		<typeAlias type="com.task.entity.User" alias="User"/>
 		<typeAlias type="com.task.entity.WorkCard" alias="WorkCard" />
 	</typeAliases>
 	<environments default="development">
@@ -47,5 +48,6 @@
 		<mapper resource="com/task/dao/FemaleHealthFormMapper.xml" />
 		<mapper resource="com/task/dao/MaleHealthFormMapper.xml" />
 		<mapper resource="com/task/dao/EmployeeMapper.xml" />
+		<mapper resource="com/task/dao/UserMapper.xml"/>
 	</mappers>
 </configuration>

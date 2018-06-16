@@ -14,11 +14,12 @@ import com.task.dao.MaleHealthFormDao;
  *
  */
 import com.task.dao.TaskDao;
-import com.task.dao.WorkCardDao;
+import com.task.dao.UserDao;
 import com.task.entity.EmployeeTask;
 import com.task.entity.MaleHealthForm;
 import com.task.entity.Task;
-import com.task.entity.WorkCard;
+import com.task.entity.User;
+import com.task.serviceimp.UserServiceImp;
 import com.task.utils.SqlSessionFactoryUtil;
 public class TaskDaoTest
 {
@@ -31,17 +32,20 @@ public class TaskDaoTest
 		// TODO Auto-generated method stub
 		SqlSession sqlSession = SqlSessionFactoryUtil.getSqlSession();
 		SqlSession sqlSession1 =SqlSessionFactoryUtil.getSqlSession(); 
-		WorkCardDao e=sqlSession.getMapper(WorkCardDao.class);
-		WorkCardDao e1=sqlSession1.getMapper(WorkCardDao.class);
-		WorkCard task=new WorkCard();
-		logger.info(e.selectWorkCardById(1l));
+		UserDao e=sqlSession.getMapper(UserDao.class);
+		UserDao e1=sqlSession1.getMapper(UserDao.class);
+		User task=new User();
+		logger.info(e.selectUserById(1l));
 		logger.info("再获取一次task");
 //		sqlSession.commit();
 		sqlSession.flushStatements();//刷新statement
-		//logger.info(e.selectWorkCardById(1l));
+		//logger.info(e.selectUserById(1l));
 		sqlSession.commit();//commit会刷新一级缓存
-		logger.info(e1.selectWorkCardById(1l));
+		logger.info(e1.selectUserById(1l));
 		sqlSession1.commit();
+		long begin=System.currentTimeMillis();
+		logger.info(new UserServiceImp().ValidateUser("{\"userName\":\"emp1\",\"password\":\"emp1\"}"));
+		long end=System.currentTimeMillis()-begin;
+		System.out.println(end);
 	}
-	
 }

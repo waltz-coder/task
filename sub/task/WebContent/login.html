@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script 
+	src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function()
+	{
+		$("button").click(function()
+			{
+				console.info("here");
+				var formobj=$("form");
+				formobj.attr("action","login");
+				formobj.submit();
+			});
+	});
+
+</script>
+</head>
+<body>
+	<form>
+		<p>
+			<label>用户名</label> <input type="text" name="userName"/>
+		</p>
+		<p>
+			<label>密码</label> <input type="text"  name="password"/>
+		</p>
+	</form>
+	<button>提交</button>
+</body>
+</html>

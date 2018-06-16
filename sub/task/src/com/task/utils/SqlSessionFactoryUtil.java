@@ -12,7 +12,7 @@ public class SqlSessionFactoryUtil
 	private static final Class<SqlSessionFactoryUtil> LOCK= SqlSessionFactoryUtil.class;
 	private static SqlSessionFactory sqlSessionFactory;
 	private static SqlSession sqlSession;
-	private static void getSqlSessionFactory()
+	public static SqlSessionFactory getSqlSessionFactory()
 	{
 		synchronized (LOCK)
 		{
@@ -30,7 +30,7 @@ public class SqlSessionFactoryUtil
 				}
 			}
 		}
-		return;
+		return sqlSessionFactory;
 	}
 	public static SqlSession getSqlSession()
 	
