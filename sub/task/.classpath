@@ -26,8 +26,6 @@
 	<classpathentry kind="lib" path="D:/App/FrameWork/mybatis/mybatis-3.4.6/lib/log4j-api-2.3.jar"/>
 	<classpathentry kind="lib" path="D:/App/FrameWork/mybatis/mybatis-3.4.6/lib/log4j-core-2.3.jar"/>
 	<classpathentry kind="lib" path="D:/App/FrameWork/mybatis/mybatis-3.4.6/lib/ognl-3.1.16.jar"/>
-	<classpathentry kind="lib" path="D:/App/FrameWork/mybatis/mybatis-3.4.6/lib/slf4j-api-1.7.25.jar"/>
-	<classpathentry kind="lib" path="D:/App/FrameWork/mybatis/mybatis-3.4.6/lib/slf4j-log4j12-1.7.25.jar"/>
 	<classpathentry kind="lib" path="D:/App/FrameWork/redis4j/jedis-2.9.0.jar"/>
 	<classpathentry kind="lib" path="D:/App/FrameWork/json-lib/required/commons-beanutils.jar"/>
 	<classpathentry kind="lib" path="D:/App/FrameWork/json-lib/required/commons-collections-3.2.2.jar"/>
@@ -35,5 +33,17 @@
 	<classpathentry kind="lib" path="D:/App/FrameWork/json-lib/required/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="D:/App/FrameWork/json-lib/required/ezmorph-1.0.6.jar"/>
 	<classpathentry kind="lib" path="D:/App/FrameWork/json-lib/required/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="D:/App/FrameWork/mybatis/mybatis-spring/mybatis-spring-1.3.2.jar"/>
+	<classpathentry kind="lib" path="D:/resources/spring/spring-aop-4.3.18.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/resources/spring/spring-beans-4.3.18.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/resources/spring/spring-context-4.3.18.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/resources/spring/spring-core-4.3.18.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/resources/spring/spring-test-4.3.18.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/resources/spring/spring-web-4.3.18.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/resources/spring/spring-webmvc-4.3.18.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/resources/spring/spring-expression-4.3.18.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/resources/spring/spring-tx-4.3.18.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/resources/spring/spring-jdbc-4.3.18.RELEASE.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
